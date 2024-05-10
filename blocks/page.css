@@ -1,17 +1,20 @@
 .page {
   background-color: #000;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 .page__content {
   max-width: 880px;
   width: 100%;
-  padding: 45px 19px 60px;
+  padding: 45px 19px 0;
   margin: 0 auto;
   background-color: #000;
 }
 
 @media screen and (max-width: 580px) {
   .page__content {
-    padding: 28px 0 36px;
+    padding: 28px 0 0;
   }
 }

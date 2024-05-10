@@ -5,16 +5,21 @@
   line-height: 1.2;
   text-align: left;
   color: #545454;
-  margin: 67px 0 0;
+  margin: 67px auto 60px;
+  padding: 0 19px;
+  width: 100%;
+  max-width: 918px;
+  box-sizing: border-box;
 }
 
 .footer__copyright {
   margin: 0;
+  padding: 0;
 }
 
 @media screen and (max-width: 580px) {
-.footer {
-  margin: 48px 0 0;
-  font-size: 14px;
-  padding: 0 19px;
+  .footer {
+    margin: 48px auto 36px;
+    font-size: 14px;
+  }
 }

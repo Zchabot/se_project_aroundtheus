@@ -1,21 +1,28 @@
 # Project 3: Around The U.S.
 
-### Overview  
+This is project 3 for the TripleTen Software Engineer program. In this project we created a web page titled "Around the U.S." This is an interactive webpage where users can personalize a profile by making small changes, such as adding or removing pictures as well as adding their name and a title or breif description.
 
-* Intro  
-* Figma  
-* Images  
-  
-**Intro**
-  
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
-  
-**Figma**  
-  
-* [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)  
-  
-**Images**  
-  
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-  
-Good luck and have fun!
+## Project Features
+
+- Semantic HTML5
+- Flexbox
+- Grid layout
+- Responsive design for different screen sizes
+- Media queries
+
+## Demo
+
+### Images
+
+![alt text](./images/demo/demo-desktop.jpg)
+![alt text](./images/demo/demo-mobile.jpg)
+![alt text](./images/demo/demo-buttons.jpg)
+![alt text](./images/demo/demo-button-2.jpg)
+
+### Video Link
+
+https://drive.google.com/file/d/1wn2gnj1LEAvECHiUe4kr7ypE0kn3hYf-/view?usp=drive_link
+
+## Improvements
+
+At this stage of the project we do not have working buttons that allow us to add information as described. I know we will be building on this project over the next few sprints so I am assuming we will be adding these functions in. I think another improvement would be enlarging the pictures when selected or hovered using transition:scale on modifiers such as :hover.
