@@ -2,6 +2,10 @@
 
 This is project 3 for the TripleTen Software Engineer program. In this project we created a web page titled "Around the U.S." This is an interactive webpage where users can personalize a profile by making small changes, such as adding or removing pictures as well as adding their name and a title or breif description.
 
+## Site Link
+
+https://zchabot.github.io/se_project_aroundtheus/
+
 ## Project Features
 
 - Semantic HTML5
