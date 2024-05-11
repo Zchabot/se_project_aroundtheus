@@ -23,7 +23,7 @@
   height: 282px;
 }
 
-.card__footer {
+.cards__footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -35,8 +35,12 @@
   font-family: "Inter", Arial, sans-serif;
   font-size: 24px;
   font-weight: 900;
-  line-height: 1;
+  line-height: 1.2;
   margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 225px;
 }
 
 .cards__like-button {
