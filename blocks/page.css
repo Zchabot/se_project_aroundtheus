@@ -2,12 +2,10 @@
   background-color: #000;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 .page__content {
   max-width: 880px;
-  width: 100%;
   padding: 45px 19px 0;
   margin: 0 auto;
   background-color: #000;
@@ -15,6 +13,6 @@
 
 @media screen and (max-width: 580px) {
   .page__content {
-    padding: 28px 0 0;
+    padding: 28px 19px 0;
   }
 }
