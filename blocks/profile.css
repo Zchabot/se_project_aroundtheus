@@ -39,7 +39,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 100%;
+  max-width: 375px;
 }
 
 .profile__subtitle {
@@ -51,7 +51,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 100%;
+  max-width: 375px;
 }
 
 .profile__edit-button {
@@ -98,10 +98,12 @@
 @media screen and (max-width: 760px) {
   .profile__title {
     font-size: 30px;
+    max-width: 268px;
   }
 
   .profile__subtitle {
     font-size: 16px;
+    max-width: 268px;
   }
 
   .profile__add-button {
@@ -133,10 +135,12 @@
   .profile__title {
     font-size: 22px;
     line-height: 1;
+    max-width: 254px;
   }
 
   .profile__subtitle {
     font-size: 14px;
+    max-width: 254px;
   }
 
   .profile__edit-button {
