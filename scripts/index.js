@@ -24,3 +24,14 @@ const initialCards = [
     link: "images/lago.jpg",
   },
 ];
+
+let profileEditButton = document.querySelector(".profile__edit-button");
+let profileEditModal = document.querySelector("#profile-edit-modal");
+profileEditButton.addEventListener("click", function () {
+  profileEditModal.classList.add("modal_opened");
+});
+
+let profileCloseButton = document.querySelector(".modal__close");
+profileCloseButton.addEventListener("click", function () {
+  profileEditModal.classList.remove("modal_opened");
+});
