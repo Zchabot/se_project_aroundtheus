@@ -37,6 +37,9 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; Around The U.S.</p>
     </footer>
+
+    <!-- Edit Modal -->
+
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
         <button class="modal__close"></button>
@@ -53,6 +56,30 @@
             name="subtitle"
             class="modal__input"
             value="Explorer"
+          />
+          <button class="modal__button">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Add Card Modal -->
+
+    <div class="modal" id="add-card-modal">
+      <div class="modal__container">
+        <button class="modal__close"></button>
+        <p class="modal__heading">New Place</p>
+        <form class="modal__form" id="add-card-form">
+          <input
+            type="text"
+            name="card-title"
+            class="modal__input"
+            placeholder="Title"
+          />
+          <input
+            type="text"
+            name="url"
+            class="modal__input"
+            placeholder="Image URL"
           />
           <button class="modal__button">Save</button>
         </form>
