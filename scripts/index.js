@@ -96,13 +96,21 @@ function renderCard(cardData, wrapper) {
   wrapper.prepend(cardElement);
 }
 
+function fillProfileForm() {
+  profileModalTitle.value = profileTitle.textContent;
+  profileModalSubtitle.value = profileSubtitle.textContent;
+}
+
+function fillProfileInformation() {
+  profileTitle.textContent = profileModalTitle.value;
+  profileSubtitle.textContent = profileModalSubtitle.value;
+}
+
 // Event Handlers //
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-
-  profileTitle.textContent = profileModalTitle.value;
-  profileSubtitle.textContent = profileModalSubtitle.value;
+  fillProfileInformation();
   closeModal(profileEditModal);
 }
 
@@ -112,13 +120,13 @@ function handleAddCardFormSubmit(evt) {
   const link = addCardModalUrl.value;
   renderCard({ name, link }, cardListEl);
   closeModal(addCardModal);
+  addCardFormElement.reset();
 }
 
 // Event Listeners //
 
 profileEditButton.addEventListener("click", () => {
-  profileModalTitle.value = profileTitle.textContent;
-  profileModalSubtitle.value = profileSubtitle.textContent;
+  fillProfileForm();
   openModal(profileEditModal);
 });
 

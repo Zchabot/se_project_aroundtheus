@@ -42,22 +42,24 @@
 
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
-        <button class="modal__close"></button>
-        <p class="modal__heading">Edit Profile</p>
+        <button class="modal__close" type="button"></button>
+        <h2 class="modal__heading">Edit Profile</h2>
         <form class="modal__form" id="profile-form">
           <input
             type="text"
             name="title"
             class="modal__input"
-            value="Jacques Cousteau"
+            placeholder="Name"
+            required
           />
           <input
             type="text"
             name="subtitle"
             class="modal__input"
-            value="Explorer"
+            placeholder="Title/Description"
+            required
           />
-          <button class="modal__button">Save</button>
+          <button class="modal__button" type="submit">Save</button>
         </form>
       </div>
     </div>
@@ -66,22 +68,24 @@
 
     <div class="modal" id="add-card-modal">
       <div class="modal__container">
-        <button class="modal__close"></button>
-        <p class="modal__heading">New Place</p>
+        <button class="modal__close" type="button"></button>
+        <h2 class="modal__heading">New Place</h2>
         <form class="modal__form" id="add-card-form">
           <input
             type="text"
             name="card-title"
             class="modal__input"
             placeholder="Title"
+            required
           />
           <input
-            type="text"
+            type="url"
             name="url"
             class="modal__input"
             placeholder="Image Link"
+            required
           />
-          <button class="modal__button">Create</button>
+          <button class="modal__button" type="submit">Create</button>
         </form>
       </div>
     </div>
@@ -90,9 +94,9 @@
 
     <div class="modal" id="open-picture-modal">
       <div class="modal__picture-container">
-        <button class="modal__close open-picture-close"></button>
+        <button class="modal__close open-picture-close" type="button"></button>
         <img src="" alt="" class="modal__open-picture" />
-        <p class="modal__footer"></p>
+        <h2 class="modal__footer"></h2>
       </div>
     </div>
     <template id="cards__card">
@@ -100,11 +104,19 @@
         <img src="" alt="" class="cards__image" />
         <div class="cards__footer">
           <h2 class="cards__image-title"></h2>
-          <button type="button" class="cards__like-button"></button>
-          <button type="button" class="cards__delete-button"></button>
+          <button
+            type="button"
+            class="cards__like-button"
+            type="button"
+          ></button>
+          <button
+            type="button"
+            class="cards__delete-button"
+            type="button"
+          ></button>
         </div>
       </li>
     </template>
-    <script src="scripts/index.js"></script>
+    <script defer src="scripts/index.js"></script>
   </body>
 </html>
