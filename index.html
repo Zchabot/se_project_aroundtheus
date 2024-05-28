@@ -79,10 +79,20 @@
             type="text"
             name="url"
             class="modal__input"
-            placeholder="Image URL"
+            placeholder="Image Link"
           />
           <button class="modal__button">Save</button>
         </form>
+      </div>
+    </div>
+
+    <!-- Open Picture Modal -->
+
+    <div class="modal" id="open-picture-modal">
+      <div class="modal__picture-container">
+        <button class="modal__close open-picture-close"></button>
+        <img src="" alt="" class="modal__open-picture" />
+        <p class="modal__footer"></p>
       </div>
     </div>
     <template id="cards__card">
@@ -91,6 +101,7 @@
         <div class="cards__footer">
           <h2 class="cards__image-title"></h2>
           <button type="button" class="cards__like-button"></button>
+          <button type="button" class="cards__delete-button"></button>
         </div>
       </li>
     </template>
