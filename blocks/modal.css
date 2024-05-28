@@ -109,10 +109,10 @@
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
-  top: -45px;
-  right: -45px;
-  width: 40px;
-  height: 40px;
+  top: -37px;
+  right: -37px;
+  width: 32px;
+  height: 32px;
   cursor: pointer;
   transition: opacity 0.5s linear 0s;
 }
@@ -135,9 +135,9 @@
   }
 
   .modal__close {
-    width: 26px;
-    height: 26px;
-    top: -65px;
+    width: 21px;
+    height: 21px;
+    top: -60px;
     right: 7px;
   }
 
