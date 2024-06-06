@@ -107,12 +107,25 @@ function fillProfileInformation() {
   profileSubtitle.textContent = profileModalSubtitle.value;
 }
 
-function overlayClickClose(modal) {
+function clickOverlayModalClose(modal) {
   modal.addEventListener("click", () => {
     if (event.target.classList.contains("modal")) {
       closeModal(event.target);
     }
   });
+}
+
+function escModalClose(modal) {
+  document.addEventListener("keydown", (evt) => {
+    if (evt.key.toLowerCase() === "escape") {
+      closeModal(modal);
+    }
+  });
+}
+
+function modalCloseOptions(modal) {
+  clickOverlayModalClose(modal);
+  escModalClose(modal);
 }
 
 // Event Handlers //
@@ -159,4 +172,4 @@ addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 
-modals.forEach((modal) => overlayClickClose(modal));
+modals.forEach((modal) => modalCloseOptions(modal));
