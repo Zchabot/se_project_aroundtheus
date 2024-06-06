@@ -48,6 +48,7 @@ const addCardModalUrl = document.querySelector("[name='url']");
 
 const openPictureModal = document.querySelector("#open-picture-modal");
 const openPictureCloseButton = openPictureModal.querySelector(".modal__close");
+const modals = document.querySelectorAll(".modal");
 
 // Functions //
 
@@ -106,6 +107,14 @@ function fillProfileInformation() {
   profileSubtitle.textContent = profileModalSubtitle.value;
 }
 
+function overlayClickClose(modal) {
+  modal.addEventListener("click", () => {
+    if (event.target.classList.contains("modal")) {
+      closeModal(event.target);
+    }
+  });
+}
+
 // Event Handlers //
 
 function handleProfileFormSubmit(evt) {
@@ -149,3 +158,5 @@ addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 // Loops //
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
+
+modals.forEach((modal) => overlayClickClose(modal));

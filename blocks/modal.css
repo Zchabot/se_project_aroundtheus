@@ -81,6 +81,10 @@
   border-bottom: solid rgba(0, 0, 0, 0.2);
 }
 
+.modal__input_type_error {
+  border-bottom: solid rgba(255, 0, 0, 1);
+}
+
 .modal__button {
   margin: 18px 0 0;
   width: 100%;
@@ -102,6 +106,10 @@
   opacity: 0.8;
 }
 
+.modal__button_disabled {
+  opacity: 0.2;
+}
+
 .modal__close {
   background-image: url(../images/close.svg);
   border: none;
@@ -119,6 +127,15 @@
 
 .modal__close:hover {
   opacity: 0.6;
+}
+
+.modal__error_visible {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: left;
+  color: rgba(255, 0, 0, 1);
 }
 
 @media screen and (max-width: 580px) {
