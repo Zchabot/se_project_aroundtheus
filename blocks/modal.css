@@ -165,6 +165,10 @@
     right: 7px;
   }
 
+  .modal__error_visible {
+    max-width: 238px;
+  }
+
   .open-picture-close {
     width: 24px;
     height: 24px;
