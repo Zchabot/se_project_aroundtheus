@@ -86,12 +86,12 @@ function getCardElement(cardData) {
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
-  modal.addEventListener("mousedown", closeModalFunctions(modal));
+  document.addEventListener("keydown", handleEscKey);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  modal.removeEventListener("mousedown", closeModalFunctions(modal));
+  document.removeEventListener("keydown", handleEscKey);
 }
 
 function renderCard(cardData, wrapper) {
@@ -117,17 +117,22 @@ function clickOverlayCloseModal(modal) {
   });
 }
 
-function closeModalWithEsc(modal) {
-  document.addEventListener("keydown", (evt) => {
-    if (evt.key === "Escape") {
+function closeOpenModals() {
+  modals.forEach((modal) => {
+    if (modal.classList.contains("modal_opened")) {
       closeModal(modal);
     }
   });
 }
 
+const handleEscKey = (evt) => {
+  if (evt.key === "Escape") {
+    closeOpenModals();
+  }
+};
+
 function closeModalFunctions(modal) {
   clickOverlayCloseModal(modal);
-  closeModalWithEsc(modal);
   closeModalCloseButton(modal);
 }
 
@@ -172,3 +177,5 @@ addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 // Loops //
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
+
+modals.forEach((modal) => closeModalFunctions(modal));
