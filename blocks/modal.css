@@ -110,6 +110,10 @@
   opacity: 0.2;
 }
 
+.modal__button_disabled:hover {
+  opacity: 0.2;
+}
+
 .modal__close {
   background-image: url(../images/close.svg);
   border: none;
