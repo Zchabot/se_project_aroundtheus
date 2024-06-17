@@ -59,9 +59,15 @@ const formEls = [...document.querySelectorAll(config.formSelector)];
 
 // Functions //
 
-const handleImageClick = () => {
+function handleImageClick() {
+  const openPictureImage = document.querySelector(".modal__open-picture");
+  const openPictureTitle = document.querySelector(".modal__footer");
+
+  openPictureImage.src = this._cardImageEl.src;
+  openPictureImage.alt = this._cardImageEl.alt;
+  openPictureTitle.textContent = this._cardTitleEl.textContent;
   openModal(openPictureModal);
-};
+}
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
@@ -143,24 +149,15 @@ function handleAddCardFormSubmit(evt) {
   );
   renderCard({ name, link }, cardListEl);
   closeModal(addCardModal);
-  resetErrorClass(addCardModal);
   addCardFormElement.reset();
-  addCardSubmitButton.classList.add(config.inactiveButtonClass);
+  new FormValidator(config, addCardFormElement).resetFormValidation();
 }
 
-function resetErrorClass(modal) {
-  const inputEls = [...modal.querySelectorAll(config.inputSelector)];
-  inputEls.forEach((inputEl) => {
-    inputEl.classList.remove(config.inputErrorClass);
-    const errorMessageEl = modal.querySelector(`#${inputEl.id}-error`);
-    errorMessageEl.textContent = "";
-  });
-}
 // Event Listeners //
 
 profileEditButton.addEventListener("click", () => {
   fillProfileForm();
-  resetErrorClass(profileEditModal);
+  new FormValidator(config, profileFormElement).resetFormValidation();
   openModal(profileEditModal);
 });
 
