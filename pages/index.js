@@ -57,6 +57,14 @@ const openPictureModal = document.querySelector("#open-picture-modal");
 const modals = document.querySelectorAll(".modal");
 const formEls = [...document.querySelectorAll(config.formSelector)];
 
+// Form Validation
+
+const addCardFormValidator = new FormValidator(config, addCardFormElement);
+const profileFormValidator = new FormValidator(config, profileFormElement);
+
+addCardFormValidator.enableValidation();
+profileFormValidator.enableValidation();
+
 // Functions //
 
 function handleImageClick() {
@@ -150,14 +158,14 @@ function handleAddCardFormSubmit(evt) {
   renderCard({ name, link }, cardListEl);
   closeModal(addCardModal);
   addCardFormElement.reset();
-  new FormValidator(config, addCardFormElement).resetFormValidation();
+  addCardFormValidator.resetFormValidation();
 }
 
 // Event Listeners //
 
 profileEditButton.addEventListener("click", () => {
   fillProfileForm();
-  new FormValidator(config, profileFormElement).resetFormValidation();
+  profileFormValidator.resetFormValidation();
   openModal(profileEditModal);
 });
 
@@ -172,7 +180,3 @@ addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 
 modals.forEach((modal) => closeModalFunctions(modal));
-
-formEls.forEach((formEl) => {
-  new FormValidator(config, formEl).enableValidation();
-});
