@@ -6,12 +6,27 @@ export default class Popup {
 
   open() {
     this._popupElement.classList.add("modal_opened");
-    document.addEventListener("keydown", this.handleEscClose);
+    this._setEventListeners();
   }
 
   close() {
     this._popupElement.classList.remove("modal_opened");
+    this._removeEventListeners();
+  }
+
+  _setEventListeners() {
+    document.addEventListener("keydown", this.handleEscClose);
+    this._popupElement.addEventListener("mousedown", this.handleClickOverlay);
+    this._closeButton.addEventListener("mousedown", this.handleCloseButton);
+  }
+
+  _removeEventListeners() {
     document.removeEventListener("keydown", this.handleEscClose);
+    this._popupElement.removeEventListener(
+      "mousedown",
+      this.handleClickOverlay
+    );
+    this._closeButton.removeEventListener("mousedown", this.handleCloseButton);
   }
 
   handleEscClose = (evt) => {
@@ -20,35 +35,13 @@ export default class Popup {
     }
   };
 
-  setEventListeners() {
-    this._popupElement.addEventListener("mousedown", (event) => {
-      if (event.target.classList.contains("modal")) {
-        this.close();
-      }
-    });
-
-    this._closeButton.addEventListener("mousedown", () => {
-      this.close();
-    });
-  }
-}
-
-/*
-
-function clickOverlayCloseModal(modal) {
-  modal.addEventListener("mousedown", (event) => {
+  handleClickOverlay = (event) => {
     if (event.target.classList.contains("modal")) {
-      closeModal(event.target);
+      this.close();
     }
-  });
+  };
 
-
-function closeModalCloseButton(modal) {
-  modal.addEventListener("mousedown", (evt) => {
-    if (evt.target.classList.contains("modal__close")) {
-      closeModal(modal);
-    }
-  });
+  handleCloseButton = () => {
+    this.close();
+  };
 }
-}
-*/

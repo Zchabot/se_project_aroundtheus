@@ -12,13 +12,8 @@ export default class UserInfo {
     return this._profileInfo;
   }
 
-  setUserInfo(inputData) {
-    this._profileName.textContent = inputData[0];
-    this._profileTitle.textContent = inputData[1];
+  setUserInfo({ name, title }) {
+    this._profileName.textContent = name;
+    this._profileTitle.textContent = title;
   }
 }
-
-/*function fillProfileForm() {
-  profileModalTitle.value = profileTitle.textContent;
-  profileModalSubtitle.value = profileSubtitle.textContent;
-}*/

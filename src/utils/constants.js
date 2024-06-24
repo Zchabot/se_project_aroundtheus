@@ -38,8 +38,8 @@ export const config = {
 export const profileEditButton = document.querySelector(
   ".profile__edit-button"
 );
-export const profileModalTitle = document.querySelector("[name='title']");
-export const profileModalSubtitle = document.querySelector("[name='subtitle']");
+export const profileModalTitle = document.querySelector("[name='name']");
+export const profileModalSubtitle = document.querySelector("[name='title']");
 export const profileFormElement = document.forms["profile-form"];
 
 export const addCardButton = document.querySelector(".profile__add-button");

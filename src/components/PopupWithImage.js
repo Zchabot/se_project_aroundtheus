@@ -7,10 +7,10 @@ export default class PopupWithImage extends Popup {
     this._imageTitle = this._popupElement.querySelector(".modal__footer");
   }
 
-  open(imageData) {
-    this._image.src = imageData[0];
-    this._image.alt = imageData[1];
-    this._imageTitle.textContent = imageData[2];
+  open(src, alt, title) {
+    this._image.src = src;
+    this._image.alt = alt;
+    this._imageTitle.textContent = title;
     super.open();
   }
 }

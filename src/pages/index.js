@@ -1,6 +1,6 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import Section from "../utils/Section.js";
+import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
@@ -35,16 +35,6 @@ const cardList = new Section(
   ".cards"
 );
 
-const newCard = new Section(
-  {
-    items: "",
-    renderer: (cardItem) => {
-      return new Card(cardItem, "#cards__card", handleImageClick).getView();
-    },
-  },
-  ".cards"
-);
-
 cardList.renderItems();
 
 // Form Validation //
@@ -58,32 +48,25 @@ profileFormValidator.enableValidation();
 // Popup With Form //
 
 const newCardPopup = new PopupWithForm("#add-card-modal", (inputData) => {
-  newCard.addItem({ name: inputData[0], link: inputData[1] });
+  cardList.addItem({ name: inputData.title, link: inputData.url });
   addCardFormElement.reset();
   addCardFormValidator.resetFormValidation();
+  newCardPopup.close();
 });
 
 const profilePopup = new PopupWithForm("#profile-edit-modal", (inputData) => {
   userInformation.setUserInfo(inputData);
+  profilePopup.close();
 });
-
-newCardPopup.setEventListeners();
-profilePopup.setEventListeners();
 
 // Popup With Image //
 
 const imagePopup = new PopupWithImage("#open-picture-modal");
 
-imagePopup.setEventListeners();
-
 // Functions //
 
-function handleImageClick() {
-  imagePopup.open([
-    this._cardImageEl.src,
-    this._cardImageEl.alt,
-    this._cardTitleEl.textContent,
-  ]);
+function handleImageClick(src, alt, title) {
+  imagePopup.open(src, alt, title);
 }
 
 function fillProfileForm() {
