@@ -4,13 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Around the US</title>
-    <link rel="stylesheet" href="./pages/index.css" class="styles" />
   </head>
   <body class="page">
     <main class="page__content">
       <header class="header">
         <img
-          src="./images/logo.svg"
+          src="<%=require('./images/logo.svg')%>"
           alt="Around the US logo"
           class="header__logo"
         />
@@ -18,7 +17,7 @@
       <section class="profile">
         <div class="profile__content">
           <img
-            src="images/jacques-cousteau.jpg"
+            src="<%=require('./images/jacques-cousteau.jpg')%>"
             alt="Jaques Cousteau"
             class="profile__image"
           />
@@ -138,6 +137,5 @@
         </div>
       </li>
     </template>
-    <script type="module" defer src="pages/index.js"></script>
   </body>
 </html>
