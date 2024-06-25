@@ -11,11 +11,6 @@ export default class Section {
     });
   }
 
-  /* Tried this here. It did not work. Please explain further. Thank you.
-  renderItems() {
-    this._items.forEach(this._renderer);
-  } */
-
   addItem(item) {
     const element = this._renderer(item);
     this._container.prepend(element);
