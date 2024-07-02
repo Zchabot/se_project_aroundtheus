@@ -16,17 +16,18 @@
       </header>
       <section class="profile">
         <div class="profile__content">
+          <img src="" alt="Jaques Cousteau" class="profile__image" />
           <img
-            src="<%=require('./images/jacques-cousteau.jpg')%>"
-            alt="Jaques Cousteau"
-            class="profile__image"
+            src="<%=require('./images/pencil.svg')%>"
+            alt="Edit Picture"
+            class="profile__image-edit"
           />
           <div class="profile__information">
             <div class="profile__title-section">
-              <h1 class="profile__title">Jacques Cousteau</h1>
+              <h1 class="profile__title"></h1>
               <button type="button" class="profile__edit-button"></button>
             </div>
-            <p class="profile__subtitle">Explorer</p>
+            <p class="profile__subtitle"></p>
           </div>
           <button type="button" class="profile__add-button"></button>
         </div>
@@ -119,6 +120,46 @@
         <h2 class="modal__footer"></h2>
       </div>
     </div>
+
+    <!-- Delete Card Modal -->
+
+    <div class="modal" id="delete-card-modal">
+      <div class="modal__container">
+        <button class="modal__close" type="button"></button>
+        <h2 class="modal__heading delete-card-heading">Are you sure?</h2>
+        <form class="modal__form" id="profile-form">
+          <button class="modal__button" type="submit">Yes</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Profile Picture Modal -->
+
+    <div class="modal" id="profile-picture-modal">
+      <div class="modal__container">
+        <button class="modal__close" type="button"></button>
+        <h2 class="modal__heading">Change profile picture</h2>
+        <form class="modal__form" id="profile-picture-form">
+          <input
+            type="url"
+            name="url"
+            id="profile-picture-url"
+            class="modal__input"
+            placeholder="Image Link"
+            required
+          />
+          <span class="modal__error" id="profile-picture-url-error"></span>
+          <button
+            class="modal__button modal__button_disabled"
+            type="submit"
+            disabled
+          >
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+
     <template id="cards__card">
       <li class="cards__card">
         <img src="" alt="" class="cards__image" />
