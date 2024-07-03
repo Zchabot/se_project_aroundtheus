@@ -1,11 +1,10 @@
-import { api } from "../pages";
-
 export default class Card {
   constructor(
     { name, link, _id, isLiked },
     cardSelector,
     handleImageClick,
-    handleDeleteCard
+    handleDeleteCard,
+    handleLikes
   ) {
     this._name = name;
     this._link = link;
@@ -13,6 +12,7 @@ export default class Card {
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleDeleteCard = handleDeleteCard;
+    this._handleLikes = handleLikes;
     this._isLiked = isLiked;
   }
 
@@ -44,19 +44,24 @@ export default class Card {
 
   _handleLikeIcon = () => {
     this._likeButton.classList.toggle("cards__like-button_active");
-    if (this._likeButton.classList.contains("cards__like-button_active")) {
-      api.addLike(this._id);
-    } else {
-      api.deleteLike(this._id);
-    }
+    this._handleLikes(this._isLiked, this._id);
   };
 
-  _getIsLiked() {
-    if (this._isLiked === true) {
+  _isLiked() {
+    return this._isLiked;
+  }
+
+  _renderLikes() {
+    if (this._isLiked) {
       this._likeButton.classList.add("cards__like-button_active");
     } else {
       this._likeButton.classList.remove("cards__like-button_active");
     }
+  }
+
+  deleteCard(cardElement) {
+    cardElement.remove();
+    cardElement = null;
   }
 
   getView() {
@@ -70,7 +75,7 @@ export default class Card {
     this._cardTitleEl = this._cardElement.querySelector(".cards__image-title");
 
     this._setEventListeners();
-    this._getIsLiked();
+    this._renderLikes();
     this._cardTitleEl.textContent = this._name;
     this._cardImageEl.src = this._link;
     this._cardImageEl.alt = this._name;

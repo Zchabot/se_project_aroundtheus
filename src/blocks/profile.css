@@ -17,6 +17,7 @@
   border: none;
   object-fit: cover;
   z-index: 1;
+  transition: opacity 0.5s linear 0s;
 }
 
 .profile__image-edit {

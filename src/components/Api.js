@@ -5,38 +5,23 @@ export default class Api {
     this._options = options;
   }
 
+  _processResponse = (res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error: ${res.status}`);
+  };
+
   getInitialCards() {
     return fetch(`${this._options.baseUrl}/cards`, {
       headers: this._options.headers,
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Error: ${res.status}`);
-      })
-      .then((results) => {
-        results.forEach((result) => {
-          cardList.renderItems(result);
-        });
-      })
-
-      .catch((err) => {
-        console.error(err);
-      });
+    }).then(this._processResponse);
   }
 
   getUserInfo() {
     return fetch(`${this._options.baseUrl}/users/me`, {
       headers: this._options.headers,
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        userInformation.setUserInfo(result.name, result.about, result.avatar);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    }).then(this._processResponse);
   }
 
   saveUserData({ name, about }) {
@@ -68,27 +53,27 @@ export default class Api {
         name: name,
         link: link,
       }),
-    });
+    }).then(this._processResponse);
   }
 
   deleteCard(id) {
     return fetch(`${this._options.baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this._options.headers,
-    });
+    }).then(this._processResponse);
   }
 
   addLike(id) {
     return fetch(`${this._options.baseUrl}/cards/${id}/likes`, {
       method: "PUT",
       headers: this._options.headers,
-    });
+    }).then(this._processResponse);
   }
 
   deleteLike(id) {
     return fetch(`${this._options.baseUrl}/cards/${id}/likes`, {
       method: "DELETE",
       headers: this._options.headers,
-    });
+    }).then(this._processResponse);
   }
 }

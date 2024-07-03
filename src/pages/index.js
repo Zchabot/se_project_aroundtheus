@@ -14,6 +14,7 @@ import {
   addCardFormElement,
   profilePictureElement,
   profilePictureFormElement,
+  deleteCardFormElement,
 } from "../utils/constants.js";
 import "./index.css";
 import Api from "../components/Api.js";
@@ -28,8 +29,27 @@ export const api = new Api({
     "Content-Type": "application/json",
   },
 });
-api.getInitialCards();
-api.getUserInfo();
+
+api
+  .getInitialCards()
+  .then((results) => {
+    results.forEach((result) => {
+      cardList.renderItems(result);
+    });
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+
+api
+  .getUserInfo()
+  .then((result) => {
+    userInformation.setUserInfo(result.name, result.about);
+    userInformation.setAvatar(result.avatar);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 // UserInfo //
 
@@ -48,11 +68,20 @@ export const cardList = new Section(
         cardItem,
         "#cards__card",
         handleImageClick,
-        handleDeleteClick
+        handleDeleteClick,
+        handleLikes
       ).getView();
     },
   },
   ".cards"
+);
+
+const card = new Card(
+  {},
+  "#cards__card",
+  handleImageClick,
+  handleDeleteClick,
+  handleLikes
 );
 
 // Form Validation //
@@ -71,53 +100,71 @@ profilePictureFormValidator.enableValidation();
 // Popup With Form //
 
 const newCardPopup = new PopupWithForm("#add-card-modal", (inputData) => {
-  loadingButtonCallback(addCardFormElement);
+  loadingButtonCallback(addCardFormElement, "Saving...");
   api
     .addNewCard(inputData.title, inputData.url)
-    .then(() => location.reload(true))
+    .then((result) => cardList.addItem(result))
     .then(() => {
       addCardFormElement.reset();
       addCardFormValidator.resetFormValidation();
       newCardPopup.close();
-      onloadButtonReset(addCardFormElement, "Create");
-    });
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => onloadButtonReset(addCardFormElement, "Create"));
 });
 
 const profilePopup = new PopupWithForm("#profile-edit-modal", (inputData) => {
-  loadingButtonCallback(profileFormElement);
+  loadingButtonCallback(profileFormElement, "Saving...");
   api
     .saveUserData({ name: inputData.name, about: inputData.title })
     .then(() => api.getUserInfo())
-    .then(() => {
+    .then((result) => {
+      userInformation.setUserInfo(result.name, result.about);
       profileFormElement.reset();
       profilePopup.close();
-      onloadButtonReset(profileFormElement, "Save");
-    });
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => onloadButtonReset(profileFormElement, "Save"));
 });
 
 const profilePicturePopup = new PopupWithForm(
   "#profile-picture-modal",
   (inputData) => {
-    loadingButtonCallback(profilePictureFormElement);
+    loadingButtonCallback(profilePictureFormElement, "Saving...");
     api
       .saveUserImage({ avatar: inputData.url })
       .then(() => api.getUserInfo())
-      .then(() => {
+      .then((result) => {
+        userInformation.setAvatar(result.avatar);
         profilePictureFormElement.reset();
         profilePictureFormValidator.resetFormValidation();
         profilePicturePopup.close();
-        onloadButtonReset(profilePictureFormElement, "Save");
-      });
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      .finally(() => onloadButtonReset(profilePictureFormElement, "Save"));
   }
 );
 
 export const deletePopup = new PopupConfirmDelete(
   "#delete-card-modal",
   (element) => {
-    api.deleteCard(element.id);
-    element.remove();
-    element = null;
-    deletePopup.close();
+    loadingButtonCallback(deleteCardFormElement, "Removing Card...");
+    api
+      .deleteCard(element.id)
+      .then(() => {
+        card.deleteCard(element);
+        deletePopup.close();
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      .finally(() => onloadButtonReset(deleteCardFormElement, "Yes"));
   }
 );
 
@@ -141,14 +188,26 @@ function fillProfileForm() {
   profileModalSubtitle.value = profileInfo.title;
 }
 
-function loadingButtonCallback(formElement) {
+function loadingButtonCallback(formElement, text) {
   const buttonElement = formElement.querySelector(".modal__button");
-  buttonElement.textContent = "Saving...";
+  buttonElement.textContent = text;
 }
 
 function onloadButtonReset(formElement, text) {
   const buttonElement = formElement.querySelector(".modal__button");
   buttonElement.textContent = text;
+}
+
+function handleLikes(isLiked, id) {
+  if (isLiked) {
+    api.deleteLike(id).catch((err) => {
+      console.error(err);
+    });
+  } else {
+    api.addLike(id).catch((err) => {
+      console.error(err);
+    });
+  }
 }
 
 // Event Listeners //

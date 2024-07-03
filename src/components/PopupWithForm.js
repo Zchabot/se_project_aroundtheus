@@ -33,8 +33,7 @@ export default class PopupWithForm extends Popup {
 
   handleSubmitListener = (evt) => {
     evt.preventDefault();
-    this._handleFormSubmit(this._getInputValues()).onload =
-      this._loadingButtonCallback;
+    this._handleFormSubmit(this._getInputValues());
   };
 
   _loadingButtonCallback() {

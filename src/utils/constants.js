@@ -20,3 +20,7 @@ export const addCardFormElement = document.forms["add-card-form"];
 
 export const profilePictureElement = document.querySelector(".profile__image");
 export const profilePictureFormElement = document.forms["profile-picture-form"];
+
+const deleteCardModal = document.querySelector("#delete-card-modal");
+export const deleteCardFormElement =
+  deleteCardModal.querySelector(".modal__form");
