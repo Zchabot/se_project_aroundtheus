@@ -32,7 +32,7 @@ export default class Api {
         name: name,
         about: about,
       }),
-    });
+    }).then(this._processResponse);
   }
 
   saveUserImage({ avatar }) {
@@ -42,7 +42,7 @@ export default class Api {
       body: JSON.stringify({
         avatar: avatar,
       }),
-    });
+    }).then(this._processResponse);
   }
 
   addNewCard(name, link) {

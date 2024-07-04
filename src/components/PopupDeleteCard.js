@@ -5,6 +5,7 @@ export default class PopupConfirmDelete extends Popup {
     super({ popupSelector });
     this._popupForm = this._popupElement.querySelector(".modal__form");
     this._handleFormSubmit = handleFormSubmit;
+    this._submitButton = this._popupForm.querySelector(".modal__button");
   }
 
   open(element) {
@@ -22,4 +23,12 @@ export default class PopupConfirmDelete extends Popup {
     evt.preventDefault();
     this._handleFormSubmit(this._element);
   };
+
+  renderLoading() {
+    this._submitButton.textContent = "Removing Card...";
+  }
+
+  resetButton() {
+    this._submitButton.textContent = "Yes";
+  }
 }

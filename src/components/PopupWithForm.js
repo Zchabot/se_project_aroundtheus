@@ -36,7 +36,11 @@ export default class PopupWithForm extends Popup {
     this._handleFormSubmit(this._getInputValues());
   };
 
-  _loadingButtonCallback() {
+  renderLoading() {
     this._submitButton.textContent = "Saving...";
+  }
+
+  resetButton(text) {
+    this._submitButton.textContent = text;
   }
 }
