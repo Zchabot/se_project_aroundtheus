@@ -33,10 +33,9 @@ export const api = new Api({
 api
   .getInitialCards()
   .then((results) => {
-    results.forEach((result) => {
-      cardList.renderItems(result);
-    });
+    cardList.renderItems(results);
   })
+
   .catch((err) => {
     console.error(err);
   });
@@ -188,12 +187,12 @@ function fillProfileForm() {
   profileModalSubtitle.value = profileInfo.title;
 }
 
-function handleLikes(isLiked, id, likeButton) {
+function handleLikes(isLiked, id, likeButton, item) {
   if (isLiked) {
     api
       .deleteLike(id)
-      .then((response) => {
-        card.setIsLiked(response.isLiked, likeButton);
+      .then((result) => {
+        card.setIsLiked(result.isLiked, likeButton, item);
       })
       .catch((err) => {
         console.error(err);
@@ -201,8 +200,8 @@ function handleLikes(isLiked, id, likeButton) {
   } else {
     api
       .addLike(id)
-      .then((response) => {
-        card.setIsLiked(response.isLiked, likeButton);
+      .then((result) => {
+        card.setIsLiked(result.isLiked, likeButton, item);
       })
       .catch((err) => {
         console.error(err);

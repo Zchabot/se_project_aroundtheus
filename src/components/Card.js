@@ -43,12 +43,7 @@ export default class Card {
   }
 
   _handleLikeIcon = () => {
-    this._handleLikes(this._isLiked, this._id, this._likeButton);
-    if (this._isLiked) {
-      this._isLiked = false;
-    } else {
-      this._isLiked = true;
-    }
+    this._handleLikes(this._isLiked, this._id, this._likeButton, this);
   };
 
   _isLiked() {
@@ -63,9 +58,10 @@ export default class Card {
     }
   }
 
-  setIsLiked(isLiked, likeButton) {
+  setIsLiked(isLiked, likeButton, item) {
     this._isLiked = isLiked;
     this._renderLikes(likeButton);
+    item._isLiked = isLiked;
   }
 
   deleteCard(cardElement) {
