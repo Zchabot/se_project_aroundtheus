@@ -1,29 +1,17 @@
-import Popup from "./Popup.js";
+import Popup from "./Popup";
 
-export default class PopupWithForm extends Popup {
+export default class PopupConfirmDelete extends Popup {
   constructor(popupSelector, handleFormSubmit) {
     super({ popupSelector });
     this._popupForm = this._popupElement.querySelector(".modal__form");
     this._handleFormSubmit = handleFormSubmit;
-    this._inputFields = [
-      ...this._popupElement.querySelectorAll(".modal__input"),
-    ];
     this._submitButton = this._popupForm.querySelector(".modal__button");
   }
 
-  _getInputValues() {
-    const inputValues = {};
-
-    this._inputFields.forEach((input) => {
-      inputValues[input.name] = input.value;
-    });
-
-    return inputValues;
-  }
-
-  open() {
+  open(element) {
     super.open();
     this._popupForm.addEventListener("submit", this.handleSubmitListener);
+    this._element = element;
   }
 
   close() {
@@ -33,14 +21,14 @@ export default class PopupWithForm extends Popup {
 
   handleSubmitListener = (evt) => {
     evt.preventDefault();
-    this._handleFormSubmit(this._getInputValues());
+    this._handleFormSubmit(this._element);
   };
 
   renderLoading() {
-    this._submitButton.textContent = "Saving...";
+    this._submitButton.textContent = "Removing Card...";
   }
 
-  resetButton(text) {
-    this._submitButton.textContent = text;
+  resetButton() {
+    this._submitButton.textContent = "Yes";
   }
 }

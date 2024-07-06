@@ -1,30 +1,3 @@
-export const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: new URL("../images/yosemite.jpg", import.meta.url),
-  },
-  {
-    name: "Lake Louise",
-    link: new URL("../images/lake-louise.jpg", import.meta.url),
-  },
-  {
-    name: "Bald Mountains",
-    link: new URL("../images/bald-mountains.jpg", import.meta.url),
-  },
-  {
-    name: "Latemar",
-    link: new URL("../images/latemar.jpg", import.meta.url),
-  },
-  {
-    name: "Vanoise National Park",
-    link: new URL("../images/vanoise.jpg", import.meta.url),
-  },
-  {
-    name: "Lago di Braies",
-    link: new URL("../images/lago.jpg", import.meta.url),
-  },
-];
-
 // Elements //
 
 export const config = {
@@ -44,3 +17,10 @@ export const profileFormElement = document.forms["profile-form"];
 
 export const addCardButton = document.querySelector(".profile__add-button");
 export const addCardFormElement = document.forms["add-card-form"];
+
+export const profilePictureElement = document.querySelector(".profile__image");
+export const profilePictureFormElement = document.forms["profile-picture-form"];
+
+const deleteCardModal = document.querySelector("#delete-card-modal");
+export const deleteCardFormElement =
+  deleteCardModal.querySelector(".modal__form");

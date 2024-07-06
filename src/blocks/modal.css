@@ -63,6 +63,10 @@
   text-align: left;
 }
 
+.delete-card-heading {
+  margin-bottom: 20px;
+}
+
 .modal__form {
   display: flex;
   flex-direction: column;

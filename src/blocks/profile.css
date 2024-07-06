@@ -7,6 +7,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  position: relative;
 }
 
 .profile__image {
@@ -15,6 +16,22 @@
   border-radius: 50%;
   border: none;
   object-fit: cover;
+  z-index: 1;
+  transition: opacity 0.5s linear 0s;
+  cursor: pointer;
+}
+
+.profile__image-edit {
+  height: 26px;
+  width: 26px;
+  position: absolute;
+  top: auto;
+  bottom: auto;
+  left: 47px;
+}
+
+.profile__image:hover {
+  opacity: 0.2;
 }
 
 .profile__information {
@@ -159,5 +176,11 @@
     justify-self: flex-start;
     margin: 0;
     background-size: 16px 16px;
+  }
+
+  .profile__image-edit {
+    top: 47px;
+    left: auto;
+    right: auto;
   }
 }
