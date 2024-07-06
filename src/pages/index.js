@@ -75,14 +75,6 @@ export const cardList = new Section(
   ".cards"
 );
 
-const card = new Card(
-  {},
-  "#cards__card",
-  handleImageClick,
-  handleDeleteClick,
-  handleLikes
-);
-
 // Form Validation //
 
 const addCardFormValidator = new FormValidator(config, addCardFormElement);
@@ -118,7 +110,6 @@ const profilePopup = new PopupWithForm("#profile-edit-modal", (inputData) => {
   profilePopup.renderLoading();
   api
     .saveUserData({ name: inputData.name, about: inputData.title })
-    .then(() => api.getUserInfo())
     .then((result) => {
       userInformation.setUserInfo(result.name, result.about);
       profileFormElement.reset();
@@ -136,7 +127,6 @@ const profilePicturePopup = new PopupWithForm(
     profilePicturePopup.renderLoading();
     api
       .saveUserImage({ avatar: inputData.url })
-      .then(() => api.getUserInfo())
       .then((result) => {
         userInformation.setAvatar(result.avatar);
         profilePictureFormElement.reset();
@@ -152,12 +142,12 @@ const profilePicturePopup = new PopupWithForm(
 
 export const deletePopup = new PopupConfirmDelete(
   "#delete-card-modal",
-  (element) => {
+  (card) => {
     deletePopup.renderLoading();
     api
-      .deleteCard(element.id)
+      .deleteCard(card._id)
       .then(() => {
-        card.deleteCard(element);
+        card.deleteCard();
         deletePopup.close();
       })
       .catch((err) => {
@@ -173,8 +163,8 @@ const imagePopup = new PopupWithImage("#open-picture-modal");
 
 // Functions //
 
-function handleDeleteClick(cardElement) {
-  deletePopup.open(cardElement);
+function handleDeleteClick(card) {
+  deletePopup.open(card);
 }
 
 function handleImageClick(src, alt, title) {
@@ -187,21 +177,21 @@ function fillProfileForm() {
   profileModalSubtitle.value = profileInfo.title;
 }
 
-function handleLikes(isLiked, id, likeButton, item) {
-  if (isLiked) {
+function handleLikes(card) {
+  if (card._isLiked) {
     api
-      .deleteLike(id)
+      .deleteLike(card._id)
       .then((result) => {
-        card.setIsLiked(result.isLiked, likeButton, item);
+        card.setIsLiked(result.isLiked);
       })
       .catch((err) => {
         console.error(err);
       });
   } else {
     api
-      .addLike(id)
+      .addLike(card._id)
       .then((result) => {
-        card.setIsLiked(result.isLiked, likeButton, item);
+        card.setIsLiked(result.isLiked);
       })
       .catch((err) => {
         console.error(err);
