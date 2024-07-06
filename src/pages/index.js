@@ -14,7 +14,6 @@ import {
   addCardFormElement,
   profilePictureElement,
   profilePictureFormElement,
-  deleteCardFormElement,
 } from "../utils/constants.js";
 import "./index.css";
 import Api from "../components/Api.js";
