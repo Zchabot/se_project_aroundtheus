@@ -19,7 +19,7 @@ https://zchabot.github.io/se_project_aroundtheus/
 ### Images
 
 ![alt text](./src/images/demo/demo-desktop.jpg)
-![alt text](./scr/images/demo/demo-mobile.jpg)
+![alt text](./src/images/demo/demo-mobile.jpg)
 ![alt text](./src/images/demo/demo-button.jpg)
 
 ### Video Link
